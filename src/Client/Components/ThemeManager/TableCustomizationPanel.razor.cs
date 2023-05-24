@@ -14,6 +14,9 @@ public partial class TableCustomizationPanel
     public bool HasBorder { get; set; }
     [Parameter]
     public bool IsHoverable { get; set; }
+    [Parameter]
+    public bool IsFixedHeader { get; set; }
+
     [Inject]
     protected INotificationPublisher Notifications { get; set; } = default!;
 
@@ -30,6 +33,7 @@ public partial class TableCustomizationPanel
         IsStriped = _tablePreference.IsStriped;
         HasBorder = _tablePreference.HasBorder;
         IsHoverable = _tablePreference.IsHoverable;
+        IsFixedHeader = _tablePreference.IsFixedHeader;
     }
 
     [Parameter]
@@ -43,6 +47,9 @@ public partial class TableCustomizationPanel
 
     [Parameter]
     public EventCallback<bool> OnHoverableSwitchToggled { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnFixedHeaderSwitchToggled { get; set; }
 
     private async Task ToggleDenseSwitch()
     {
@@ -69,6 +76,13 @@ public partial class TableCustomizationPanel
     {
         _tablePreference.IsHoverable = !_tablePreference.IsHoverable;
         await OnHoverableSwitchToggled.InvokeAsync(_tablePreference.IsHoverable);
+        await Notifications.PublishAsync(_tablePreference);
+    }
+
+    private async Task ToggleFixedHeaderSwitch()
+    {
+        _tablePreference.IsFixedHeader = !_tablePreference.IsFixedHeader;
+        await OnFixedHeaderSwitchToggled.InvokeAsync(_tablePreference.IsFixedHeader);
         await Notifications.PublishAsync(_tablePreference);
     }
 }

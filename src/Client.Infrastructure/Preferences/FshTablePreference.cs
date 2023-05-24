@@ -8,4 +8,5 @@ public class FshTablePreference : INotificationMessage
     public bool IsStriped { get; set; }
     public bool HasBorder { get; set; }
     public bool IsHoverable { get; set; }
+    public bool IsFixedHeader { get; set; } = true;
 }

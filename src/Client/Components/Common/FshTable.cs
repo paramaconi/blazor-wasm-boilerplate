@@ -35,5 +35,7 @@ public class FshTable<T> : MudTable<T>
         Striped = tablePreference.IsStriped;
         Bordered = tablePreference.HasBorder;
         Hover = tablePreference.IsHoverable;
+        FixedHeader = tablePreference.IsFixedHeader;
+        Height = tablePreference.IsFixedHeader ? "400px" : string.Empty;
     }
 }

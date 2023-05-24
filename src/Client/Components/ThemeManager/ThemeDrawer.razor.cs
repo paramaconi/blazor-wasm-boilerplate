@@ -93,4 +93,13 @@ public partial class ThemeDrawer
             await ThemePreferenceChanged.InvokeAsync(ThemePreference);
         }
     }
+
+    private async Task ToggleEntityTableFixedHeader(bool isFixedHeader)
+    {
+        if (ThemePreference is not null)
+        {
+            ThemePreference.TablePreference.IsFixedHeader = isFixedHeader;
+            await ThemePreferenceChanged.InvokeAsync(ThemePreference);
+        }
+    }
 }
