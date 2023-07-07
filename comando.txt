@@ -1,0 +1,1 @@
+dotnet build -t:NSwag .\src\Client.Infrastructure\Client.Infrastructure.csproj
